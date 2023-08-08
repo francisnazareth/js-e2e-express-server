@@ -38,4 +38,11 @@ steps:
     azureSubscription: 'mcaps-svc-conn'
     appType: 'webAppLinux'
     WebAppName: 'fnopenaiweb300'
-    packageForLinux: '$(System.DefaultWorkingDirectory)/**/*.zip'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)'
+- task: AzureRmWebAppDeployment@4
+  inputs:
+    ConnectionType: 'AzureRM'
+    azureSubscription: 'mcaps-svc-conn'
+    appType: 'webAppLinux'
+    WebAppName: 'fnopenaiweb300'
+    packageForLinux: '$(System.DefaultWorkingDirectory)'

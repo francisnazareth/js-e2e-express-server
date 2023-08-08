@@ -44,5 +44,5 @@ steps:
     ConnectionType: 'AzureRM'
     azureSubscription: 'mcaps-svc-conn'
     appType: 'webAppLinux'
-    WebAppName: 'fnopenaiweb300'
+    WebAppName: 'fnnodejsapp'
     packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'

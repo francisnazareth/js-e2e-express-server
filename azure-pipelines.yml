@@ -31,18 +31,18 @@ steps:
        public/*
     targetFolder: '$(Build.ArtifactStagingDirectory)'
   displayName: 'Copy project files'
-  
+
+- task: PublishPipelineArtifact@1
+  inputs:
+    artifactName: e2e-server
+    targetPath: '$(Build.ArtifactStagingDirectory)'
+    publishLocation: 'pipeline'
+  displayName: 'Publish npm artifact'
+
 - task: AzureRmWebAppDeployment@4
   inputs:
     ConnectionType: 'AzureRM'
     azureSubscription: 'mcaps-svc-conn'
     appType: 'webAppLinux'
     WebAppName: 'fnopenaiweb300'
-    packageForLinux: '$(Build.ArtifactStagingDirectory)'
-- task: AzureRmWebAppDeployment@4
-  inputs:
-    ConnectionType: 'AzureRM'
-    azureSubscription: 'mcaps-svc-conn'
-    appType: 'webAppLinux'
-    WebAppName: 'fnopenaiweb300'
-    packageForLinux: '$(System.DefaultWorkingDirectory)'
+    packageForLinux: '$(Build.ArtifactStagingDirectory)/**/*.zip'
